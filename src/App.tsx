@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div id="map-container">MAP</div>
+      <div id="map-container"></div>
     </>
   )
 }
