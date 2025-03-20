@@ -1,3 +1,7 @@
+# PROJECT OVERVIEW
+
+The initention of theis project is to begin working with interactive map visualizations of data. I am attempting to bring in clickable layers in a Mapbox map to work with seed growing and harvest information for different USDA hardiness zones.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
