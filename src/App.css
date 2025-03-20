@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+#map-container {
+  height: 100%;
+  width: 100%;
+  background-color: lightgrey;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
