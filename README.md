@@ -2,6 +2,16 @@
 
 The initention of theis project is to begin working with interactive map visualizations of data. I am attempting to bring in clickable layers in a Mapbox map to work with seed growing and harvest information for different USDA hardiness zones.
 
+# Roadmap
+1. Render a Mapbox map
+2. Add layer to map from GeoJSON
+  a. download from [OregonState](https://prism.oregonstate.edu/projects/plant_hardiness_zones.php) - possibly there's a GeoJSON download here?
+  b. render in QGIS
+  c. export as GeoJSON
+
+### Further research and next steps
+1. Look for ways to add click handlers to layers
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
