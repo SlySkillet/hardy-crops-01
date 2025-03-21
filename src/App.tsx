@@ -20,7 +20,6 @@ function App() {
     the TSX below in the return statement.
     */
     if (!mapContainerRef.current){
-      console.log('catch catching')
       return
     }
 
@@ -35,6 +34,9 @@ function App() {
       INTERESTING: this adds a class 'mapbox-gl' to the container div
       */
       container: mapContainerRef.current,
+      center: [-98.774795, 42.096718],
+      zoom: 3.5,
+      projection: 'albers',
     });
 
     /*
