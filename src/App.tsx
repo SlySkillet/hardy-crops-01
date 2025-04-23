@@ -39,6 +39,31 @@ function App() {
       projection: 'albers',
     });
 
+    mapRef.current.on('load', () => {
+      // ADD VECTOR TILE SOURCE
+      if (!mapRef.current?.getSource('tileset')) {
+        mapRef.current?.addSource('tileset', {
+          type: 'vector',
+          url: 'mapbox://slyskillet.1p8ny161'
+        })
+      }
+
+      // ADD LAYER
+      if (!mapRef.current?.getLayer('zones-layer')) {
+        mapRef.current?.addLayer({
+          id: 'zones-layer',
+          type: 'fill',
+          source: 'tileset',
+          'source-layer': 'phzm_us_zones_shp_2023_1-4y0acx',
+          paint: {
+            'fill-color': '#228B22',
+            'fill-opacity': 0.6
+          }
+        })
+      }
+    })
+
+
     /*
     CLEANUP: this function runs when unmounting to free up memory and ensure
     multiple instances of the map aren't kicking around.
