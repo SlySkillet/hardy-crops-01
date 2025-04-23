@@ -56,7 +56,30 @@ function App() {
           source: 'tileset',
           'source-layer': 'phzm_us_zones_shp_2023_1-4y0acx',
           paint: {
-            'fill-color': '#228B22',
+            'fill-color': [
+              'match',
+              ['get', 'Id'],
+              1, '#30123b',
+              2, '#3e3994',
+              3, '#455ed3',
+              4, '#4681f7',
+              5, '#3aa3fc',
+              6, '#23c4e3',
+              7, '#18dec0',
+              8, '#2df09d',
+              9, '#5cfc70',
+              10, '#90ff48',
+              11, '#b6f735',
+              12, '#d7e535',
+              13, '#f0cc3a',
+              14, '#fdae35',
+              15, '#fc8825',
+              16, '#f26014',
+              17, '#e04008',
+              18, '#c52603',
+              19, '#a21201',
+              '#cccccc'
+            ],
             'fill-opacity': 0.6
           }
         })
