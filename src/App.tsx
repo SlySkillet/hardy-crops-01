@@ -34,10 +34,60 @@ function App() {
       INTERESTING: this adds a class 'mapbox-gl' to the container div
       */
       container: mapContainerRef.current,
+      style: 'mapbox://styles/slyskillet/cm9u8bl2w00f801qt590lgu1y',
       center: [-98.774795, 42.096718],
       zoom: 3.5,
       projection: 'albers',
     });
+
+
+    // Wait for map to load --> add layer
+    mapRef.current.on('load', () => {
+      // add source (vector tileset)
+      if (!mapRef.current?.getSource('tileset')) {
+        mapRef.current?.addSource('tileset', {
+          type: 'vector',
+          url: 'mapbox://slyskillet.1p8ny161'
+        })
+      }
+
+      // ADD LAYER
+      if (!mapRef.current?.getLayer('zones-layer')) {
+        mapRef.current?.addLayer({
+          id: 'zones-layer',
+          type: 'fill',
+          source: 'tileset',
+          'source-layer': 'phzm_us_zones_shp_2023_1-4y0acx',  // name of tileset in studio
+          paint: {
+            'fill-color': [
+              'match',
+              ['get', 'Id'],
+              1, '#30123b',
+              2, '#3e3994',
+              3, '#455ed3',
+              4, '#4681f7',
+              5, '#3aa3fc',
+              6, '#23c4e3',
+              7, '#18dec0',
+              8, '#2df09d',
+              9, '#5cfc70',
+              10, '#90ff48',
+              11, '#b6f735',
+              12, '#d7e535',
+              13, '#f0cc3a',
+              14, '#fdae35',
+              15, '#fc8825',
+              16, '#f26014',
+              17, '#e04008',
+              18, '#c52603',
+              19, '#a21201',
+              '#cccccc'
+            ],
+            'fill-opacity': 0.6
+          }
+        })
+      }
+    })
 
     /*
     CLEANUP: this function runs when unmounting to free up memory and ensure
