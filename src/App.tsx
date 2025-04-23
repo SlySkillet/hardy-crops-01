@@ -39,8 +39,10 @@ function App() {
       projection: 'albers',
     });
 
+
+    // Wait for map to load --> add layer
     mapRef.current.on('load', () => {
-      // ADD VECTOR TILE SOURCE
+      // add source (vector tileset)
       if (!mapRef.current?.getSource('tileset')) {
         mapRef.current?.addSource('tileset', {
           type: 'vector',
@@ -54,7 +56,7 @@ function App() {
           id: 'zones-layer',
           type: 'fill',
           source: 'tileset',
-          'source-layer': 'phzm_us_zones_shp_2023_1-4y0acx',
+          'source-layer': 'phzm_us_zones_shp_2023_1-4y0acx',  // name of tileset in studio
           paint: {
             'fill-color': [
               'match',
@@ -85,7 +87,6 @@ function App() {
         })
       }
     })
-
 
     /*
     CLEANUP: this function runs when unmounting to free up memory and ensure
