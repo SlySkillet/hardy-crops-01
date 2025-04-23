@@ -89,6 +89,13 @@ function App() {
       }
     })
 
+    // handle click on zones-layer
+    mapRef.current.on('click', 'zones-layer', (e) => {
+      if (e.features) {
+        console.log(e.features[0].properties)
+      }
+    })
+
     /*
     CLEANUP: this function runs when unmounting to free up memory and ensure
     multiple instances of the map aren't kicking around.
