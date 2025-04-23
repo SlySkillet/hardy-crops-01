@@ -34,6 +34,7 @@ function App() {
       INTERESTING: this adds a class 'mapbox-gl' to the container div
       */
       container: mapContainerRef.current,
+      style: 'mapbox://styles/slyskillet/cm9u8bl2w00f801qt590lgu1y',
       center: [-98.774795, 42.096718],
       zoom: 3.5,
       projection: 'albers',
