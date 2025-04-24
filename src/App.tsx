@@ -3,7 +3,7 @@ import mapboxgl, {Map} from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import './App.css'
-// import { GeoJsonProperties } from 'geojson'
+import ZoneDetailCard from './components/ZoneDetailCard'
 
 interface ZoneProperties {
   Id: number
@@ -140,8 +140,11 @@ function App() {
 
   return (
     <>
-      {/* [ -> 2 ] */}
-      <div id="map-container" className="h-screen w-full bg-gray-200" ref={mapContainerRef}></div>
+      <div className="h-screen flex flex-col">
+        <ZoneDetailCard zone={currentZone} />
+        {/* [ -> 2 ] */}
+        <div id="map-container" className="flex-1 bg-gray-200" ref={mapContainerRef}></div>
+      </div>
     </>
   )
 }
