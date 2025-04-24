@@ -141,7 +141,7 @@ function App() {
   return (
     <>
       {/* [ -> 2 ] */}
-      <div id="map-container" ref={mapContainerRef}></div>
+      <div id="map-container" className="h-screen w-full bg-gray-200" ref={mapContainerRef}></div>
     </>
   )
 }
