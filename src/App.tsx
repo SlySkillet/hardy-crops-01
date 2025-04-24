@@ -1,8 +1,17 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import mapboxgl, {Map} from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import './App.css'
+// import { GeoJsonProperties } from 'geojson'
+
+interface ZoneProperties {
+  Id: number
+  gridcode: number
+  trange: string
+  zone: string
+  zonetitle: string
+}
 
 function App() {
   const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
@@ -10,6 +19,8 @@ function App() {
   // `useRef` is used to reference a value that is not need for rendering
   const mapRef = useRef<Map|null>(null)
   const mapContainerRef = useRef<HTMLDivElement|null>(null) // [ -> 1 ]
+
+  const [ currentZone, setCurrentZone ] = useState<ZoneProperties | null>(null)
 
 
   useEffect(() => {
@@ -109,6 +120,7 @@ function App() {
       const clickedZoneId = e.features![0].properties?.Id
       console.log(e.features[0].properties)
       mapRef.current?.setFilter('zones-layer-highlight', ['==', 'Id', clickedZoneId])
+      setCurrentZone(e.features[0].properties as ZoneProperties)
     })
 
 
