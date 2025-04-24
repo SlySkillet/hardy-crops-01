@@ -1,8 +1,17 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import mapboxgl, {Map} from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import './App.css'
+import ZoneDetailCard from './components/ZoneDetailCard'
+
+interface ZoneProperties {
+  Id: number
+  gridcode: number
+  trange: string
+  zone: string
+  zonetitle: string
+}
 
 function App() {
   const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
@@ -10,6 +19,9 @@ function App() {
   // `useRef` is used to reference a value that is not need for rendering
   const mapRef = useRef<Map|null>(null)
   const mapContainerRef = useRef<HTMLDivElement|null>(null) // [ -> 1 ]
+
+  const [ currentZone, setCurrentZone ] = useState<ZoneProperties | null>(null)
+
 
   useEffect(() => {
     /*
@@ -87,7 +99,30 @@ function App() {
           }
         })
       }
+      // add highlight layer
+      if (!mapRef.current?.getLayer('zones-layer-highlight')) {
+        mapRef.current?.addLayer({
+          id: 'zones-layer-highlight',
+          type: 'fill',
+          source: 'tileset',
+          'source-layer': 'phzm_us_zones_shp_2023_1-4y0acx',
+          paint: {
+            'fill-color': '#ffff00',
+            'fill-opacity': 0.8,
+          },
+          filter: ['==', 'Id', -1]
+        })
+      }
     })
+
+    mapRef.current.on('click', 'zones-layer', (e) => {
+      if (!e.features?.[0]) return
+      const clickedZoneId = e.features![0].properties?.Id
+      console.log(e.features[0].properties)
+      mapRef.current?.setFilter('zones-layer-highlight', ['==', 'Id', clickedZoneId])
+      setCurrentZone(e.features[0].properties as ZoneProperties)
+    })
+
 
     /*
     CLEANUP: this function runs when unmounting to free up memory and ensure
@@ -101,10 +136,15 @@ function App() {
     }
   }, [mapboxToken]) // runs effect when mapbox token changes
 
+
+
   return (
     <>
-      {/* [ -> 2 ] */}
-      <div id="map-container" ref={mapContainerRef}></div>
+      <div className="h-screen flex flex-col">
+        <ZoneDetailCard zone={currentZone} />
+        {/* [ -> 2 ] */}
+        <div id="map-container" className="flex-1 bg-gray-200" ref={mapContainerRef}></div>
+      </div>
     </>
   )
 }
