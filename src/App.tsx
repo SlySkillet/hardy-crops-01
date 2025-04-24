@@ -10,6 +10,8 @@ function App() {
   // `useRef` is used to reference a value that is not need for rendering
   const mapRef = useRef<Map|null>(null)
   const mapContainerRef = useRef<HTMLDivElement|null>(null) // [ -> 1 ]
+  const highlightedZoneRef = useRef<number>(-1)
+
 
   useEffect(() => {
     /*
@@ -87,14 +89,32 @@ function App() {
           }
         })
       }
+      // add highlight layer
+      if (!mapRef.current?.getLayer('zones-layer-highlight')) {
+        mapRef.current?.addLayer({
+          id: 'zones-layer-highlight',
+          type: 'fill',
+          source: 'tileset',
+          'source-layer': 'phzm_us_zones_shp_2023_1-4y0acx',
+          paint: {
+            'fill-color': '#ffff00',
+            'fill-opacity': 0.8,
+          },
+          filter: ['==', 'Id', highlightedZoneRef.current]
+        })
+      }
     })
 
     // handle click on zones-layer
     mapRef.current.on('click', 'zones-layer', (e) => {
-      if (e.features) {
-        console.log(e.features[0].properties)
+      if (e.features && e.features.length > 0) {
+        const zoneId = e.features[0]!.properties.Id
+        console.log(e.features[0]!.properties.Id)
+        highlightedZoneRef.current = zoneId
+        mapRef.current?.setFilter('zones-layer-highlight', ['==', 'Id', zoneId])
       }
     })
+
 
     /*
     CLEANUP: this function runs when unmounting to free up memory and ensure
@@ -107,6 +127,8 @@ function App() {
       mapRef.current?.remove()
     }
   }, [mapboxToken]) // runs effect when mapbox token changes
+
+
 
   return (
     <>
