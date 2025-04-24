@@ -10,7 +10,6 @@ function App() {
   // `useRef` is used to reference a value that is not need for rendering
   const mapRef = useRef<Map|null>(null)
   const mapContainerRef = useRef<HTMLDivElement|null>(null) // [ -> 1 ]
-  const highlightedZoneRef = useRef<number>(-1)
 
 
   useEffect(() => {
@@ -100,19 +99,16 @@ function App() {
             'fill-color': '#ffff00',
             'fill-opacity': 0.8,
           },
-          filter: ['==', 'Id', highlightedZoneRef.current]
+          filter: ['==', 'Id', -1]
         })
       }
     })
 
-    // handle click on zones-layer
     mapRef.current.on('click', 'zones-layer', (e) => {
-      if (e.features && e.features.length > 0) {
-        const zoneId = e.features[0]!.properties.Id
-        console.log(e.features[0]!.properties.Id)
-        highlightedZoneRef.current = zoneId
-        mapRef.current?.setFilter('zones-layer-highlight', ['==', 'Id', zoneId])
-      }
+      if (!e.features?.[0]) return
+      const clickedZoneId = e.features![0].properties?.Id
+      console.log(e.features[0].properties)
+      mapRef.current?.setFilter('zones-layer-highlight', ['==', 'Id', clickedZoneId])
     })
 
 
