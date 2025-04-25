@@ -140,7 +140,7 @@ function App() {
 
   return (
     <>
-      <div className="h-screen flex flex-col">
+      <div className="h-screen flex">
         <ZoneDetailCard zone={currentZone} />
         {/* [ -> 2 ] */}
         <div id="map-container" className="flex-1 bg-gray-200" ref={mapContainerRef}></div>
