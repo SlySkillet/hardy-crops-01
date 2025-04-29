@@ -50,13 +50,12 @@ const ZoneDetailCard: React.FC<ZoneDetailCardProps> = ({ zone }) => {
                 </ul>
               );
             })}
-            {/* add data source here */}
           </div>
         </div>
       ) : (
         <div className="text-left text-sm">
-          This is a web map depicting the USDA Hardiness zones for the lower 48.
-          Click on the map to see a detailed description of a zone.
+          <p className="italic font-semibold my-4">This is a web map depicting the USDA Hardiness zones for the lower 48.</p>
+          <p className="text-xl font-bold pl-3">Click on the map</p><p className="text-md pl-5">to learn more about each USDA hardiness zone</p>
         </div>
       )}
       <div className="mt-auto text-left text-sm">
