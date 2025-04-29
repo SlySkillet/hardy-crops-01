@@ -29,7 +29,7 @@ const ZoneDetailCard: React.FC<ZoneDetailCardProps> = ({ zone }) => {
   const data = renderZoneDescription(zoneStripped as keyof typeof CropData);
 
   return (
-    <div className=" overflow-auto w-96 flex flex-col bg-stone-800 text-stone-100 p-3">
+    <div className=" overflow-auto w-96 flex flex-col min-h-full bg-stone-800 text-stone-100 p-3">
       <h1 className="font-bold text-3xl">USDA Hardiness Zones</h1>
       {zone ? (
         <div>
@@ -57,6 +57,41 @@ const ZoneDetailCard: React.FC<ZoneDetailCardProps> = ({ zone }) => {
           Click on the map to see a detailed description of a zone.
         </div>
       )}
+      <div className="mt-auto text-left text-sm">
+        <h5 className="font-semibold">Notes</h5>
+        <p className="mx-1">
+          [1] USDA Hardiness Zones are based only on average annual minimum
+          winter temperatures, so they don’t account for summer heat, rainfall,
+          humidity, or local microclimates. The zones ignore factors like soil,
+          wind, and the duration of cold spells, and may not reflect recent
+          climate changes. As a result, two areas with the same zone can have
+          very different growing conditions, and the map is only a starting
+          point for plant selection-local knowledge and site-specific factors
+          are also essential.
+        </p>
+        <p className="mx-1">
+          [2] Shapefile source:{" "}
+          <a
+            href="https://prism.oregonstate.edu/projects/plant_hardiness_zones.php"
+            target="_blank"
+            rel="noopener"
+            className="text-blue-400 underline"
+          >
+            Oregon State University - USDA Plant Hardiness Zone GIS Datasets
+          </a>
+        </p>
+        <p className="mx-1">
+          [3] Hardiness zone descriptions:{" "}
+          <a
+            href="https://cropcareequipment.com/blog/best-crops-for-hardiness-zones/"
+            target="_blank"
+            rel="noopener"
+            className="text-blue-400 underline"
+          >
+            Crop Career Equipment Blog
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
