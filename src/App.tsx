@@ -3,6 +3,7 @@ import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import "./App.css";
+// import ZoneDetailCard from "./components/ZoneDetailCard";
 import ZoneDetailCard from "./components/ZoneDetailCard";
 
 interface ZoneProperties {
