@@ -6,3 +6,6 @@ This directory contains data from various not-completely trustworthy sources. Th
 
 file: crops.json
 source: https://www.justpuregardening.com/planting-zones/#planting-zone-plant-hardiness-zone-maps
+
+file: cropcare-blog.json
+source: https://cropcareequipment.com/blog/best-crops-for-hardiness-zones/
