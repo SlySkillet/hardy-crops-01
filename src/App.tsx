@@ -3,7 +3,6 @@ import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import "./App.css";
-// import ZoneDetailCard from "./components/ZoneDetailCard";
 import ZoneDetailCard from "./components/ZoneDetailCard";
 
 interface ZoneProperties {
@@ -54,6 +53,20 @@ function App() {
 
     // Wait for map to load --> add layer
     mapRef.current.on("load", () => {
+        // determine first symbol layer to place zones layer correctly
+        const layers = mapRef.current?.getStyle()?.layers
+        let firstSymbolId
+        if (layers) {
+          for (let i=0; i < layers.length; i++) {
+            // console.log(typeof(layers[i].type))
+            if(layers[i].type === 'symbol') {
+              firstSymbolId = layers[i].id
+              console.log('LOOK ==> ', firstSymbolId)
+              break
+            }
+          }
+        }
+
       // add source (vector tileset)
       if (!mapRef.current?.getSource("tileset")) {
         mapRef.current?.addSource("tileset", {
@@ -115,8 +128,9 @@ function App() {
             ],
             "fill-opacity": 0.6,
           },
-        });
+        }, firstSymbolId);
       }
+
       // add highlight layer
       if (!mapRef.current?.getLayer("zones-layer-highlight")) {
         mapRef.current?.addLayer({
