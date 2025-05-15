@@ -17,6 +17,7 @@ This project is live at: [https://hardy-crops-01.vercel.app/](https://hardy-crop
 
 ### Sources:
 USDA Hardiness Zones Shapefile - [OregonState](https://prism.oregonstate.edu/projects/plant_hardiness_zones.php)
+
 Hardiness Zone information - [Crop Career Equipment Blog](https://cropcareequipment.com/blog/best-crops-for-hardiness-zones/)
 
 ### Further reading
