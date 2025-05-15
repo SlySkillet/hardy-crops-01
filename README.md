@@ -1,70 +1,23 @@
-# PROJECT OVERVIEW
+# HARDY CROPS -- PROJECT OVERVIEW
 
-The initention of theis project is to begin working with interactive map visualizations of data. I am attempting to bring in clickable layers in a Mapbox map to work with seed growing and harvest information for different USDA hardiness zones.
+This project is live at: [https://hardy-crops-01.vercel.app/](https://hardy-crops-01.vercel.app/)
 
-# Roadmap
+![Hardy Crops Screenshot](docs/screenshots/main-screenshot.png)
 
-1. Render a Mapbox map
-2. Add layer to map from GeoJSON
-   a. download from [OregonState](https://prism.oregonstate.edu/projects/plant_hardiness_zones.php) - possibly there's a GeoJSON download here?
-   b. render in QGIS
-   c. export as GeoJSON
+### The goals of this project are to:
+1. illustrate the viability of common garden crops for each of the USDA Plant Hardiness Zones
+2. demonstrate the integration of spatial data as a custom layer in a Mapbox instance
+3. demonstrate use of map geometries as programmable, interactive features of a user interface
 
-### Further research and next steps
+### Built with:
+- React-TS
+- Vite
+- MapboxGl
+- TailwindCSS
 
-1. Look for ways to add click handlers to layers
+### Sources:
+USDA Hardiness Zones Shapefile - [OregonState](https://prism.oregonstate.edu/projects/plant_hardiness_zones.php)
+Hardiness Zone information - [Crop Career Equipment Blog](https://cropcareequipment.com/blog/best-crops-for-hardiness-zones/)
 
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+### Further reading
+I talk through the process of building this and other projects in my blog. Read more of my thoughts on developing this project in this post -- [Hardy Crops, an Interactive Map of Crop Viability](https://simonconrad.com/home/hardy-crops-an-interactive-map-of-crop-viability)
